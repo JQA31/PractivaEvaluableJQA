@@ -1,0 +1,38 @@
+
+  <table>
+    <tr>
+      <th>Nombre</th>
+      <th>Piso</th>
+      <th>Deuda</th>
+      <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let vecino of listaVecinos">
+      <td appDGritar >{{vecino.nombre}}</td>
+      <td>{{vecino.piso | pMayusculas}}</td>
+      <td>{{vecino.deuda | currency: "EUR"}}</td>
+      <td>
+        <button (click)="prepararModificar(vecino.id,vecino.nombre,vecino.piso,vecino.deuda)">Modificar</button>
+        <button (click)="eliminarVecino(vecino.id)">Eliminar</button>
+      </td>
+    </tr>
+  </table>
+
+<form action="">
+  <h1 *ngIf="id==0" >Añadir Vecino</h1>
+  <h1 *ngIf="id!=0" >Modificar Vecino</h1>
+  <div>
+    <label for="nombre">Nombre: </label>
+    <input type="text" name="nombre" id="nombre"  [(ngModel)]="nombre">
+  </div>
+  <div>
+    <label for="piso">Piso: </label>
+    <input type="text" name="piso" id="piso"  [(ngModel)]="piso">
+  </div>
+  <div>
+    <label for="deuda">Deuda: </label>
+    <input type="number" name="deuda" id="deuda"  [(ngModel)]="deuda">
+  </div>
+
+  <button *ngIf="id==0" type="button" (click)="anadirVecino()">Añadir Vecino</button>
+  <button *ngIf="id!=0" type="button" (click)="modificarVecino()">Modificar Vecino</button>
+</form>
